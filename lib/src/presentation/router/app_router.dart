@@ -36,10 +36,16 @@ class AppRouter {
           builder: (context) => LoadingScreen(),
         );
 
+      /// DetailScreen Screen
+      case DetailScreen.routeName:
+        return MaterialPageRoute(
+          builder: (context) => DetailScreen(dashatar: settings.arguments),
+        );
+
       /// Home Screen
       case HomeScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => HomeScreen(settings.arguments),
         );
 
       /// Main Screen
