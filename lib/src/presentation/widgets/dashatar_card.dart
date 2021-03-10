@@ -47,11 +47,39 @@ class DashatarCard extends StatelessWidget {
   }
 }
 
-class _Card extends StatelessWidget {
+class _Card extends StatefulWidget {
   final Dashatar dashatar;
   final ImageProvider imageProvider;
 
   const _Card({Key key, this.dashatar, this.imageProvider}) : super(key: key);
+
+  @override
+  __CardState createState() => __CardState();
+}
+
+class __CardState extends State<_Card> {
+  DashatarBloc _dashatarBloc;
+  ImageProvider _imageProvider;
+  Dashatar _dashatar;
+  bool _isFavored;
+
+  @override
+  void didUpdateWidget(covariant _Card oldWidget) {
+    _dashatar = widget.dashatar;
+    _imageProvider = widget.imageProvider;
+    _isFavored = _dashatar.isFavored;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void initState() {
+    _dashatar = widget.dashatar;
+    _imageProvider = widget.imageProvider;
+    _isFavored = _dashatar.isFavored;
+    _dashatarBloc = BlocProvider.of<DashatarBloc>(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,7 +88,7 @@ class _Card extends StatelessWidget {
       height: 280.0,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: imageProvider,
+          image: _imageProvider,
           fit: BoxFit.cover,
         ),
       ),
@@ -73,14 +101,22 @@ class _Card extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(dashatar.characteristic.role.name, textScaleFactor: 1.2),
+              Text(_dashatar.characteristic.role.name, textScaleFactor: 1.2),
               IconButton(
-                icon: Icon(Icons.favorite, color: Colors.grey),
-                onPressed: () {},
+                icon: Icon(
+                  Icons.favorite,
+                  color: _isFavored ? Colors.red : Colors.grey,
+                ),
+                onPressed: () {
+                  _dashatarBloc
+                      .setAsFav(_dashatar.characteristic, !_isFavored)
+                      .then(
+                          (value) => setState(() => _isFavored = !_isFavored));
+                },
               )
             ],
           ),
-          _AttributeTile(attributes: dashatar.characteristic.attributes),
+          _AttributeTile(attributes: _dashatar.characteristic.attributes),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../presentation.dart';
+import '../../logic/logic.dart';
 
 class Sidebar extends StatelessWidget {
   @override
@@ -16,11 +17,12 @@ class Sidebar extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorite Dashatars"),
-            onTap: () =>
-                Navigator.of(context).pushNamed(FavoriteScreen.routeName),
-          ),
+              leading: Icon(Icons.favorite),
+              title: Text("Favorite Dashatars"),
+              onTap: () {
+                BlocProvider.of<DashatarBloc>(context)..getFavorites();
+                Navigator.of(context).pushNamed(FavoriteScreen.routeName);
+              }),
           Divider(),
           ListTile(
             leading: Icon(Icons.settings),

@@ -36,4 +36,32 @@ class Characteristic {
 
   @override
   int get hashCode => role.hashCode ^ attributes.hashCode;
+
+  // TODO:: Let's put everything into one table and
+  // separate it in two table and use foreign keys
+  // if needed :D
+  Map<String, dynamic> toDBMap() {
+    return {
+      'id': id,
+      'role': role?.index,
+      'agility': attributes.agility,
+      'wisdom': attributes.wisdom,
+      'strength': attributes.strength,
+      'charisma': attributes.charisma,
+    };
+  }
+
+  factory Characteristic.fromDBMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+
+    return Characteristic(
+      role: Role.values[map['role']],
+      attributes: Attributes(
+        agility: map['agility'],
+        wisdom: map['wisdom'],
+        strength: map['strength'],
+        charisma: map['charisma'],
+      ),
+    );
+  }
 }
