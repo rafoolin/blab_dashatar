@@ -38,8 +38,17 @@ class FilterDashatars {
     // so that no full query is conducted
     if (filter.roles.isEmpty && attributesSum == 0) return [];
 
-    // The attributes have the wrong points.
-    assert(attributesSum < targetPoints);
+    // The attributes have wrong points.
+    // There is a dashatar for Wrong points that can not be acquired by website
+    // sliders too, so I decided not to show it either.
+    // You can uncomment it to show it.
+    if (attributesSum > targetPoints)
+      return [
+        // Characteristic(
+        //   role: Role.DEVELOPER,
+        //   attributes: filter.attributes,
+        // )
+      ];
 
     List<Role> allRoles = filter.roles.isEmpty ? Role.values : filter.roles;
 
