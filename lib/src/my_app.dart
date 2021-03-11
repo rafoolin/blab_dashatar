@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 
 import './logic/logic.dart';
+import './constants/constants.dart';
 import './presentation/presentation.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,7 +12,11 @@ class MyApp extends StatelessWidget {
       bloc: DashatarBloc(),
       child: BlocProvider<FilterBloc>(
         bloc: FilterBloc(),
-        child: MaterialApp(onGenerateRoute: AppRouter.onGenerateRoute),
+        child: MaterialApp(
+          //TODO:: replace with user selected theme
+          theme: CustomTheme.BEIGE.themeData,
+          onGenerateRoute: AppRouter.onGenerateRoute,
+        ),
       ),
     );
   }

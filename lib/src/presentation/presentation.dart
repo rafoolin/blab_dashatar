@@ -24,3 +24,6 @@ export './widgets/charisma_slider.dart';
 export './widgets/roles_checkboxes.dart';
 // Dashatar card
 export './widgets/dashatar_card.dart';
+export './widgets/animated_loading.dart';
+// Custom Theme selector
+export './widgets/theme_selector.dart';

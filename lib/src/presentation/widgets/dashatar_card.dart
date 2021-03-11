@@ -19,27 +19,31 @@ class DashatarCard extends StatelessWidget {
     return StreamBuilder<Dashatar>(
       stream: dashatarBloc.createDashatar(characteristic),
       builder: (context, snapshot) {
-        if (!snapshot.hasData || snapshot.hasError) return Container();
+        if (!snapshot.hasData || snapshot.hasError)
+          return const AnimatedLoading();
 
         dashatar = snapshot.data;
-        return GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(
-            DetailScreen.routeName,
-            arguments: dashatar,
-          ),
-          child: CachedNetworkImage(
-            imageUrl: dashatar.imageUrl,
-            imageBuilder: (context, imageProvider) => _Card(
-              dashatar: dashatar,
-              imageProvider: imageProvider,
+        return Card(
+          color: dashatar.characteristic.role.color.withOpacity(0.8),
+          child: GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed(
+              DetailScreen.routeName,
+              arguments: dashatar,
             ),
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                Center(
-              child: CircularProgressIndicator(
-                value: downloadProgress.progress,
+            child: CachedNetworkImage(
+              imageUrl: dashatar.imageUrl,
+              imageBuilder: (context, imageProvider) => _Card(
+                dashatar: dashatar,
+                imageProvider: imageProvider,
               ),
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                child: CircularProgressIndicator(
+                  value: downloadProgress.progress,
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         );
       },
@@ -83,7 +87,6 @@ class __CardState extends State<_Card> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8.0),
       width: 300.0,
       height: 280.0,
       decoration: BoxDecoration(
@@ -97,24 +100,28 @@ class __CardState extends State<_Card> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(_dashatar.characteristic.role.name, textScaleFactor: 1.2),
-              IconButton(
-                icon: Icon(
-                  Icons.favorite,
-                  color: _isFavored ? Colors.red : Colors.grey,
-                ),
-                onPressed: () {
-                  _dashatarBloc
-                      .setAsFav(_dashatar.characteristic, !_isFavored)
-                      .then(
-                          (value) => setState(() => _isFavored = !_isFavored));
-                },
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(_dashatar.characteristic.role.name, textScaleFactor: 1.2),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(
+                    Icons.favorite,
+                    color: _isFavored ? Colors.red : Colors.grey.shade200,
+                  ),
+                  onPressed: () {
+                    _dashatarBloc
+                        .setAsFav(_dashatar.characteristic, !_isFavored)
+                        .then((value) =>
+                            setState(() => _isFavored = !_isFavored));
+                  },
+                )
+              ],
+            ),
           ),
           _AttributeTile(attributes: _dashatar.characteristic.attributes),
         ],
@@ -129,14 +136,14 @@ class _AttributeTile extends StatelessWidget {
   const _AttributeTile({Key key, this.attributes}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(
+    TextStyle style = const TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
     );
     return Container(
       height: 24.0,
       alignment: Alignment.center,
-      color: Colors.white54,
+      color: Colors.white60,
       child: RichText(
         text: TextSpan(
           text: "S: ",
@@ -146,21 +153,21 @@ class _AttributeTile extends StatelessWidget {
               style: style.copyWith(color: Colors.blueGrey),
               text: "${attributes.strength}",
             ),
-            TextSpan(
+            const TextSpan(
               text: "\t\tA: ",
             ),
             TextSpan(
               style: style.copyWith(color: Colors.blueGrey),
               text: "${attributes.agility}",
             ),
-            TextSpan(
+            const TextSpan(
               text: "\t\tW: ",
             ),
             TextSpan(
               style: style.copyWith(color: Colors.blueGrey),
               text: "${attributes.wisdom}",
             ),
-            TextSpan(
+            const TextSpan(
               text: "\t\tC: ",
             ),
             TextSpan(
