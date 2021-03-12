@@ -27,3 +27,5 @@ export './widgets/dashatar_card.dart';
 export './widgets/animated_loading.dart';
 // Custom Theme selector
 export './widgets/theme_selector.dart';
+// Settings
+export './widgets/theme_setting.dart';

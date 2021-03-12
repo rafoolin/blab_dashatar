@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation/presentation.dart';
+
 class SettingScreen extends StatelessWidget {
   /// Route name
   static const String routeName = "/SettingScreen";
@@ -14,13 +16,7 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         shrinkWrap: true,
         children: [
-          // TODO:: Define logic
-          ListTile(
-            leading: const Icon(Icons.color_lens),
-            title: const Text('Theme'),
-            subtitle: const Text('Light'),
-            onTap: () {},
-          )
+          const ThemeSetting(),
         ],
       ),
     );

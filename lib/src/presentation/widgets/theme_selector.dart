@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../logic/logic.dart';
 import '../../constants/constants.dart';
 
 class ThemeSelector extends StatelessWidget {
@@ -8,6 +9,7 @@ class ThemeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    SettingsBloc settingsBloc = BlocProvider.of<SettingsBloc>(context);
 
     return AlertDialog(
       contentPadding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
@@ -15,7 +17,7 @@ class ThemeSelector extends StatelessWidget {
       title: Container(
         color: themeData.primaryColorLight,
         padding: const EdgeInsets.all(16.0),
-        child: const Text("Choose Theme"),
+        child: const Text("Choose a Theme"),
       ),
       content: Container(
         height: 64.0,
@@ -25,14 +27,21 @@ class ThemeSelector extends StatelessWidget {
           children: CustomTheme.values
               .map(
                 (theme) => GestureDetector(
-                  //TODO:: current theme is the selected one!
-                  child: _ThemeItem(
-                    themeData: theme.themeData,
-                    selected: theme.index == 0,
-                  ),
-                  // TODO:: define logic
-                  onTap: () {
-                    Navigator.of(context).pop();
+                  child: StreamBuilder<CustomTheme>(
+                      stream: settingsBloc.themeStream,
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData || snapshot.hasError)
+                          return Container();
+
+                        return _ThemeItem(
+                          themeData: theme.themeData,
+                          selected: theme == snapshot.data,
+                        );
+                      }),
+                  onTap: () async {
+                    await settingsBloc
+                        .setThemePreference(theme)
+                        .then((value) => Navigator.of(context).pop());
                   },
                 ),
               )
