@@ -19,6 +19,7 @@ class Sidebar extends StatelessWidget {
                   child: Image.asset(
                     'assets/images/default_logo.png',
                     fit: BoxFit.contain,
+                    gaplessPlayback: true,
                   ),
                 ),
               ),
