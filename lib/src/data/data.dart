@@ -3,6 +3,7 @@ export './models/dashatar.dart';
 export './models/attributes.dart';
 export 'models/dashatar_filter.dart';
 export './models/characteristic.dart';
+export './models/service_response.dart';
 
 // Data providers
 export './data_providers/dashatar_api.dart';

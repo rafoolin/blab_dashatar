@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
+import '../../services/image_process.dart';
 import '../../constants/constants.dart';
 import '../../data/data.dart';
 
@@ -13,16 +15,38 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DefaultCacheManager baseCacheManager = DefaultCacheManager();
+    final ImageProcess imageProcess = ImageProcess();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('${dashatar.characteristic.role.name}'),
-        actions: [IconButton(icon: Icon(Icons.save), onPressed: () {})],
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () async {
+              // Save the image and show a message to the user.
+              await imageProcess
+                  .saveDashatar2Gallery(dashatar, baseCacheManager)
+                  .then((serviceResponse) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: serviceResponse.isSuccess
+                        ? Text('Image Successfully saved in gallery')
+                        : Text("Sorry Dashatar couldn't be saved"),
+                  ),
+                );
+              });
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
             CachedNetworkImage(
+              cacheManager: baseCacheManager,
               imageUrl: dashatar.imageUrl,
               progressIndicatorBuilder: (context, url, downloadProgress) =>
                   Center(

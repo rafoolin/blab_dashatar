@@ -14,6 +14,13 @@ class Characteristic {
       "-W:${attributes.wisdom}"
       "-C:${attributes.charisma}";
 
+  /// Valid name to store in the gallery.
+  String get saveFileName => "${role.name}"
+      "_S${attributes.strength}"
+      "_A${attributes.agility}"
+      "_W${attributes.wisdom}"
+      "_C${attributes.charisma}";
+
   Map<String, dynamic> toUrlMap() {
     return {
       'role': role?.name?.toLowerCase(),

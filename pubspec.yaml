@@ -33,6 +33,10 @@ dependencies:
   cached_network_image: ^2.5.0
   url_launcher: ^6.0.2
   shared_preferences: ^2.0.4
+  image_gallery_saver: ^1.6.8
+  flutter_cache_manager: ^2.1.2
+  image_picker: ^0.6.7+22
+
 
 dev_dependencies:
   flutter_test:
