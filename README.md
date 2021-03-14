@@ -49,9 +49,9 @@ flutter run
 
 This is the app in action!
 
-<video width="320" height="240" controls>
-  <source src="doc_resources/screenshots/video.mp4" type="video/mp4">
-</video>
+[Video](doc_resources/screenshots/video.mp4)
+
+![video](doc_resources/screenshots/video.gif)
 
 # Credits
 
