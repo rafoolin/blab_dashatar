@@ -34,7 +34,7 @@ class DetailScreen extends StatelessWidget {
                   SnackBar(
                     content: serviceResponse.isSuccess
                         ? Text('Image Successfully saved in gallery')
-                        : Text("Sorry, need a storage permition!"),
+                        : Text("Sorry, need a storage permission!"),
                   ),
                 );
               });
