@@ -34,17 +34,17 @@ flutter run
 
 </br>
 
-<a href="doc_resources/screenshots/drawer.png"><img src="doc_resources/screenshots/drawer.png" width="200">
+<a href="doc_resources/screenshots/drawer.png"><img src="doc_resources/screenshots/drawer.png" width="300">
 </a>
 
-<a href="doc_resources/screenshots/end_drawer.png"><img src="doc_resources/screenshots/end_drawer.png" width="200">
+<a href="doc_resources/screenshots/end_drawer.png"><img src="doc_resources/screenshots/end_drawer.png" width="300">
 </a>
 
-<a href="doc_resources/screenshots/empty.png"><img src="doc_resources/screenshots/empty.png" width="100">
+<a href="doc_resources/screenshots/empty.png"><img src="doc_resources/screenshots/empty.png" width="150">
 </a>
-<a href="doc_resources/screenshots/favorite.png"><img src="doc_resources/screenshots/favorite.png" width="100">
+<a href="doc_resources/screenshots/favorite.png"><img src="doc_resources/screenshots/favorite.png" width="150">
 </a>
-<a href="doc_resources/screenshots/home.png"><img src="doc_resources/screenshots/home.png" width="100">
+<a href="doc_resources/screenshots/home.png"><img src="doc_resources/screenshots/home.png" width="150">
 </a>
 
 This is the app in action!
@@ -57,13 +57,13 @@ This is the app in action!
 
 A minimalist icon variation and a dashatar icon have been created, I have set the minimal one as the default icon, you can try either one.
 
-Images of the other icon and the original graphic asset are located in `graphics` directory. They were made using awesome [gravit-designer](designer.gravit.io).
+Images of the other icon and the original graphic asset are located in `graphics` directory. They were made using awesome [gravit-designer](https://designer.gravit.io/).
 
 I `do NOT require` attribution for your use/modification/etc of my gravit/icons files.
 
 ## Others
 
-- [Dashatar](dashatar-dev.web.app/)
+- [Dashatar](https://dashatar-dev.web.app/)
 - [empty_state Animation](https://flare.rive.app/a/rablex/files/flare/empty_state)
 - [time-read Animation](https://flare.rive.app/a/Tatyana/files/flare/time-read)
 - [teddy Animation](https://flare.rive.app/a/JuanCarlos/files/flare/teddy)
