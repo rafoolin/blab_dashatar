@@ -167,7 +167,7 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   Future<void> _myGithub() async {
-    const url = "http://gitub.com/rafoolin";
+    const url = "http://gitub.com/rafoolin/blab_dashatar";
     ThemeData theme = Theme.of(context);
 
     bool can = await canLaunch(url);
