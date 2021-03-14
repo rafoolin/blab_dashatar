@@ -20,10 +20,11 @@ class DetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${dashatar.characteristic.role.name}'),
+        title: Text('Dashatar info'),
         actions: [
           IconButton(
             icon: Icon(Icons.save),
+            tooltip: 'Save Dashatar image to the gallery',
             onPressed: () async {
               // Save the image and show a message to the user.
               await imageProcess
@@ -63,73 +64,60 @@ class DetailScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 48.0),
               child: Column(
                 children: [
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text('Class:'),
-                        Text(
-                          '${dashatar.characteristic.role.name}',
-                          textScaleFactor: 1.2,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                  _AttributeInfo(
+                    attribute: 'Class',
+                    value: dashatar.characteristic.role.name,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text('Strength:'),
-                      Text(
-                        '${dashatar.characteristic.attributes.strength}',
-                        textScaleFactor: 1.2,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  SizedBox(height: 8.0),
+                  _AttributeInfo(
+                    attribute: 'Strength',
+                    value: dashatar.characteristic.attributes.strength,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text('Agility:'),
-                      Text(
-                        '${dashatar.characteristic.attributes.agility}',
-                        textScaleFactor: 1.2,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  SizedBox(height: 8.0),
+                  _AttributeInfo(
+                    attribute: 'Agility',
+                    value: dashatar.characteristic.attributes.agility,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text('Widom:'),
-                      Text(
-                        '${dashatar.characteristic.attributes.wisdom}',
-                        textScaleFactor: 1.2,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  SizedBox(height: 8.0),
+                  _AttributeInfo(
+                    attribute: 'Wisdom',
+                    value: dashatar.characteristic.attributes.wisdom,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text('Charisma:'),
-                      Text(
-                        '${dashatar.characteristic.attributes.charisma}',
-                        textScaleFactor: 1.2,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  SizedBox(height: 8.0),
+                  _AttributeInfo(
+                    attribute: 'Charisma',
+                    value: dashatar.characteristic.attributes.charisma,
                   ),
                 ],
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _AttributeInfo extends StatelessWidget {
+  final String attribute;
+  final Object value;
+
+  const _AttributeInfo({Key key, this.attribute, this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text('$attribute:'),
+          Text(
+            '$value',
+            textScaleFactor: 1.2,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }

@@ -16,8 +16,9 @@ class AgilitySlider extends StatelessWidget {
           const Text('Agility: '),
           StreamBuilder<double>(
               stream: filterBloc.agilityStream,
-              initialData: 0,
               builder: (context, snapshot) {
+                if (!snapshot.hasData || snapshot.hasError) return Container();
+
                 return Slider.adaptive(
                   label: '${snapshot.data}',
                   divisions: 5,

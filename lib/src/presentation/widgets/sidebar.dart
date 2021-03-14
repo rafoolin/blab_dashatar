@@ -20,6 +20,7 @@ class Sidebar extends StatelessWidget {
                     'assets/images/default_logo.png',
                     fit: BoxFit.contain,
                     gaplessPlayback: true,
+                    errorBuilder: (ctx, obj, st) => Container(),
                   ),
                 ),
               ),

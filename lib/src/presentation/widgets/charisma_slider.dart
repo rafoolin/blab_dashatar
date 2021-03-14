@@ -16,8 +16,9 @@ class CharismaSlider extends StatelessWidget {
           const Text('Charisma: '),
           StreamBuilder<double>(
             stream: filterBloc.charismaStream,
-            initialData: 0,
             builder: (context, snapshot) {
+              if (!snapshot.hasData || snapshot.hasError) return Container();
+
               return Slider.adaptive(
                 label: '${snapshot.data}',
                 divisions: 5,

@@ -16,7 +16,9 @@ class FavoriteScreen extends StatelessWidget {
     DeviceRange deviceRange;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Favorite Dashatars'),
+      ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           deviceRange = deviceRange.getRange(constraints.maxWidth);

@@ -16,8 +16,8 @@ class WisdomSlider extends StatelessWidget {
           const Text('Wisdom: '),
           StreamBuilder<double>(
             stream: filterBloc.wisdomStream,
-            initialData: 0,
             builder: (context, snapshot) {
+              if (!snapshot.hasData || snapshot.hasError) return Container();
               return Slider.adaptive(
                 label: '${snapshot.data}',
                 divisions: 5,

@@ -16,8 +16,9 @@ class StrengthSlider extends StatelessWidget {
           Text('Strength: '),
           StreamBuilder<double>(
             stream: filterBloc.strengthStream,
-            initialData: 0,
             builder: (context, snapshot) {
+              if (!snapshot.hasData || snapshot.hasError) return Container();
+
               return Slider.adaptive(
                 label: '${snapshot.data}',
                 divisions: 5,

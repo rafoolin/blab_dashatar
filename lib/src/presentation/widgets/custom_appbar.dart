@@ -11,7 +11,7 @@ class CustomAppBar extends PreferredSize {
         Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(Icons.filter_list_rounded),
+              icon: Icon(Icons.filter_alt),
               onPressed: () {
                 Scaffold.of(context).openEndDrawer();
               },

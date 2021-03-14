@@ -14,8 +14,9 @@ class RolesCheckboxes extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: StreamBuilder<List<Role>>(
         stream: filterBloc.roleStream,
-        initialData: [],
         builder: (context, snapshot) {
+          if (!snapshot.hasData || snapshot.hasError) return Container();
+
           roles = snapshot.data;
           return Column(
             children: Role.values
